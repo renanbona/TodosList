@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as TodosActions from './store/actions/todos';
 
 const TodoList = ({ todos, addTodo }) => (
   <Fragment>
@@ -25,8 +27,6 @@ const mapStateToProps = state => ({
   todos: state.todos,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addTodo: text => dispatch({ type: 'ADD_TODO', payload: { text } }),
-});
+const mapDispatchToProps = dispatch => bindActionCreators(TodosActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
